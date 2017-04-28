@@ -2,7 +2,7 @@ import pygame
 from textbox import TextBox
 import sys
 from textbox_script import input_questions
-from scene import Scene
+from scene import Scene, DrivingScene
 # import classes
 
 def run_game():
@@ -12,8 +12,8 @@ def run_game():
     screen = pygame.display.set_mode(screen_size)
     screen_rect = screen.get_rect()
     pygame.display.set_caption("Mystery House")
-    background_img = pygame.image.load("images/house.jpg")
-    intro = Scene(screen, background_img)
+    intro = Scene(screen)
+    driving = DrivingScene(screen)
 
     # settings = {
     # "text": input_questions["driving_scece1"],
