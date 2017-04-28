@@ -6,7 +6,7 @@ buttons = {'start_inactive': './images/start_button.png',
         'quit_active':'./images/quit_button_hover.png'}
 
 class Scene(object):
-    def __init__(self, screen, name, bg, inactive_button, hover_button, quit_button, status=False):
+    def __init__(self, screen, bg, button, status=False):
         self.screen = screen
         self.name = name
         # self.script = script
@@ -15,14 +15,25 @@ class Scene(object):
         self.hover_button = hover_button
         self.status = status
 
+class Intro(Scene):
+    def __init__(self):
+        super(Intro, self).__init__()
+        pass
+
+
     def enter(self):
         while not self.status:        
             self.screen.blit(self.bg, (0,0))
             self.button(self.screen, 50, 50, "next")
             # self.screen.blit(text_box, (240, 600))
 
-    def button(self, scene, x, y, action=None):
-        
+    def create_button(self, scene, x, y, action=None):
+        start_button = pygame.image.load('./images/start_button.png')
+        start_button_hover = pygame.image.load('./images/start_button_hover.png')
+        quit_button = pygame.image.load('./images/quit_button.png')
+        quit_button_hover = pygame.image.load('./images/quit_button_hover.png')
+        instructions_button = pygame.image.load('./images/instructions_button.png')
+        instructions_button_hover = pygame.image.load('./images/instructions_button_hover.png')
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
         # print(click)

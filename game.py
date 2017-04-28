@@ -24,13 +24,13 @@ goth_teen = pygame.image.load('./images/goth_teen.png')
 
 screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption("Mystery House")
-intro = Scene(screen, 'intro', title_screen, start_button, start_button_hover)
+intro = Scene(screen, title_screen, start_button)
 
 def run_game():
     # pygame.init()
 
     # screen_size = (1200, 750)
-
+git commit
     # title_screen = pygame.image.load('./images/house.jpg')
     # scene1_bg = pygame.image.load('./images/scene1_bg.jpg')
     # scene2_bg = pygame.image.load('./images/scene2_bg.jpg')
