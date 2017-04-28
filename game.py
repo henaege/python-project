@@ -3,8 +3,8 @@ from textbox import TextBox
 import sys
 from textbox_script import input_questions
 from scene import Scene, DrivingScene
-# import classes
 
+# import classes
 def run_game():
     pygame.init()
 
@@ -30,8 +30,11 @@ def run_game():
         # screen.blit(background_image, (0, 0))
         # entry.text_display(screen)
         # entry.draw(screen)
-        intro.enter()
-
+        if intro.check_scene() == 1:
+            intro.enter()
+        elif intro.check_scene() == 2:
+            driving.enter()
+        
 
 
         pygame.display.flip()
