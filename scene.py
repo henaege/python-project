@@ -1,39 +1,38 @@
 import pygame
 
-buttons = {'start_inactive': './images/start_button.png',
-        'start_active':'./images/start_button_hover.png', 
-        'quit_inactive':'./images/quit_button.png', 
-        'quit_active':'./images/quit_button_hover.png'}
+button_list = {'start': ['./images/start_button_hover.png', './images/start_button.png'],
+        'quit': ['./images/quit_button_hover.png', './images/quit_button.png']
+        }
+action = ['next', 'quit', 'instruction']
+
 
 class Scene(object):
-    def __init__(self, screen, name, bg, inactive_button, hover_button, quit_button, status=False):
+    def __init__(self, screen, bg, status=False):
         self.screen = screen
-        self.name = name
-        # self.script = script
         self.bg = bg
-        self.inactive_button = inactive_button
-        self.hover_button = hover_button
         self.status = status
 
     def enter(self):
-        while not self.status:        
-            self.screen.blit(self.bg, (0,0))
-            self.button(self.screen, 50, 50, "next")
+        # while not self.status:
+            self.screen.blit(self.bg, (0, 0))
+            self.create_button("start", 50, 50, action[0])
+            self.create_button("quit", 50, 50, action[1])
             # self.screen.blit(text_box, (240, 600))
 
-    def button(self, scene, x, y, action=None):
-        
+    def create_button(self, button, x, y, action=None):
+        load_button_active = pygame.image.load(button_list[button][0])
+        load_button_inactive = pygame.image.load(button_list[button][1])
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
         # print(click)
-        if self.inactive_button.get_rect(left=x, top=y).collidepoint(pygame.mouse.get_pos()):
-            self.screen.blit(self.hover_button, (x, y))
+        if load_button_active.get_rect(left=x, top=y).collidepoint(mouse):
+            self.screen.blit(load_button_inactive, (x, y))
             if click[0] == 1 and action != None:
                 if action == "next":
-                   scene.enter()
-                   click[0] = False
+                    self.enter()
+                    click[0] = False
                 if action == "quit":
                     pygame.quit()
                     quit()
         else:
-            self.screen.blit(self.inactive_button, (x, y))
+            self.screen.blit(load_button_inactive, (x, y))
