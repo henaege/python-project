@@ -9,7 +9,7 @@ action = ['next', 'quit', 'instruction']
 
 
 class Scene(object):
-    def __init__(self, screen, scene_on=1):
+    def __init__(self, screen, scene_on=False):
         self.screen = screen
         self.bg = pygame.image.load("images/house.jpg")
         self.scene_on = scene_on
@@ -34,7 +34,7 @@ class Scene(object):
             self.screen.blit(load_button_active, (x, y))
             if click[0] == 1 and action != None:
                 if action == "next":
-                    self.scene_on += 1
+                    self.scene_on = True
                 if action == "quit":
                     pygame.quit()
                     quit()
@@ -51,5 +51,18 @@ class DrivingScene(Scene):
     def enter(self):
         # while not self.status:
             self.screen.blit(self.bg, (0, 0))
-            self.create_button("instruction", 400, 500, action[0])
-            self.create_button("quit", 400, 600, action[1])
+            self.create_button("instruction", 50, 50, action[0])
+            self.create_button("quit", 40, 50, action[1])
+
+
+class Foyer(Scene):
+    def __init__(self, screen):
+        super(Foyer, self).__init__(screen)
+        self.bg = pygame.image.load('./images/scene2_bg.jpg')
+
+    def enter(self):
+        self.screen.blit(self.bg, (0, 0))
+        self.create_button('quit', 40, 50, action[1])
+  
+    # def next_scene(self, screen, input):
+

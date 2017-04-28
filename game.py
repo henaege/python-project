@@ -2,7 +2,7 @@ import pygame
 from textbox import TextBox
 import sys
 from textbox_script import input_questions
-from scene import Scene, DrivingScene
+from scene import Scene, DrivingScene, Foyer
 
 # import classes
 def run_game():
@@ -14,6 +14,7 @@ def run_game():
     pygame.display.set_caption("Mystery House")
     intro = Scene(screen)
     driving = DrivingScene(screen)
+    foyer = Foyer(screen)
 
     # settings = {
     # "text": input_questions["driving_scece1"],
@@ -30,10 +31,12 @@ def run_game():
         # screen.blit(background_image, (0, 0))
         # entry.text_display(screen)
         # entry.draw(screen)
-        if intro.check_scene() == 1:
-            intro.enter()
-        elif intro.check_scene() == 2:
+        intro.enter()
+        if intro.check_scene():
             driving.enter()
+            pygame.time.wait(2)
+        if driving.check_scene():
+            foyer.enter()
         
 
 
