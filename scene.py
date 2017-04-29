@@ -95,7 +95,7 @@ class MasterBedroom(Scene):
         self.text_box = text_box
 
     def enter(self):
-        self.screen.blit(self.bg, (0, 0)
+        self.screen.blit(self.bg, (0, 0))
         self.screen.blit(self.text_box, (240, 580))
         self.create_button('instruction', 40, 50, action[2])
         
