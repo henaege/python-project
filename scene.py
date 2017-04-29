@@ -1,6 +1,6 @@
 import pygame
-from puzzles import *
 
+clock = pygame.time.Clock()
 
 button_list = {'start': ['./images/start_button_hover.png', './images/start_button.png'],
         'quit': ['./images/quit_button_hover.png', './images/quit_button.png'],
@@ -63,8 +63,21 @@ class DrivingScene(Scene):
         # while not self.status:
             self.screen.blit(self.bg, (0, 0))
             self.screen.blit(self.text_box, (240, 580))
-            self.create_button("instruction", 50, 50, action[0])
+            self.create_button("instruction", 50, 50, action[2])
             self.create_button("quit", 1000, 40, action[1])
+
+###### TEXT GENERATOR ######################
+    def text_generator(self,string, pos):
+            text = ''
+            for i in range(len(string)):
+                text += string[i]
+                font = pygame.font.SysFont("Consolas", 40)
+
+
+                text_generator = font.render(text,True, (255,255,255))
+                self.screen.blit(text_generator, pos)
+                pygame.display.flip()
+                clock.tick(30)
 
 
 class Foyer(Scene):
@@ -136,10 +149,3 @@ class Final(Scene):
     def enter(self):
         self.screen.blit(self.bg, (0, 0))
         self.screen.blit(self.text_box, (340, 100))
-
-
-        
-
-  
-    # def next_scene(self, screen, input):
-
