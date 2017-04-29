@@ -2,7 +2,7 @@ import pygame
 from textbox import TextBox
 import sys
 from textbox_script import input_questions
-from scene import Scene, DrivingScene, Foyer
+from scene import Scene, DrivingScene, Foyer, Library
 
 # import classes
 def run_game():
@@ -12,9 +12,14 @@ def run_game():
     screen = pygame.display.set_mode(screen_size)
     screen_rect = screen.get_rect()
     pygame.display.set_caption("Mystery House")
+    text_box = pygame.image.load('./images/text_box.png')
     intro = Scene(screen)
-    driving = DrivingScene(screen)
-    foyer = Foyer(screen)
+    driving = DrivingScene(screen, text_box)
+    foyer = Foyer(screen, text_box)
+    library = Library(screen, text_box)
+    pygame.mixer.init()
+    pygame.mixer.music.load('./music/old city theme.ogg')
+    pygame.mixer.music.play(-1)
 
     # settings = {
     # "text": input_questions["driving_scece1"],
@@ -37,6 +42,8 @@ def run_game():
             pygame.time.wait(2)
         if driving.check_scene():
             foyer.enter()
+        if foyer.check_scene():
+            library.enter()
         
 
 
