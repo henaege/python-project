@@ -31,6 +31,7 @@ def run_game():
         ScrollText(screen, "You're driving with your best friend, heading home after a day of hiking.", 400, pygame.Color(255,255,0)),
         )
     fps = 25
+    foyer = Foyer(screen, text_box)
 
     while 1:
         clock.tick(fps)
@@ -62,15 +63,10 @@ def run_game():
             # pygame.time.wait(2)
         if driving.check_scene():
             foyer.enter()
-            # foyer.text_generator("You enter the house with your friend and ring the bell. No answer.", (100,460))
-            # foyer.text_generator("Your friend shrugs and pushes the door. You both enter and see three", (100,490))
-            # foyer.text_generator("people standing in the foyer: an elderly man, a woman in a red dress and heels,", (100,520))
-            # foyer.text_generator("and a teenage boy in goth makeup.", (100, 550))
-            # foyer.text_generator("What do you do? Enter a number:", (100,460))
-            # foyer.text_generator("1. Talk to the elderly man", (100,490))
-            # foyer.text_generator("2. Talk to the beautiful woman.", (100,520))
-            # foyer.text_generator("3. Talk to the gothic teenager.", (100, 550))
-            input_box(entry)
+
+        if driving.check_scene():
+            foyer.enter()
+
         if foyer.check_scene():
             library.enter()
             input_box(entry)

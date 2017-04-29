@@ -1,5 +1,6 @@
 import pygame
 
+clock = pygame.time.Clock()
 
 
 button_list = {'start': ['./images/start_button_hover.png', './images/start_button.png'],
@@ -17,46 +18,6 @@ button_list = {'start': ['./images/start_button_hover.png', './images/start_butt
         }
 action = ['next', 'quit', 'instruction']
 
-
-def text_generator(string):
-    tmp = ''
-    for letter in string:
-        tmp += letter
-        if letter != " ":
-            yield tmp
-        # font = pygame.font.SysFont("Consolas", 40)
-        # text_display = font.render(text,True, (255,255,255))
-        # # pygame.time.Clock.tick(30)
-        # self.screen.blit(text_display, pos)
-        # pygame.time.wait(2)
-
-
-class DynamicText(object):
-    def __init__(self, font, text, pos, autoreset=False):
-        self.done = False
-        self.font = font
-        self.text = text
-        self._gen = text_generator(self.text)
-        self.pos = pos
-        self.autoreset = autoreset
-        self.update()
-
-    def reset(self):
-        self._gen = text_generator(self.text)
-        self.done = False
-        self.update()
-
-    def update(self):
-        if not self.done:
-            try:
-                self.rendered = self.font.render(next(self._gen), True, (0, 128, 0))
-            except StopIteration:
-                self.done = True
-                if self.autoreset:
-                    self.reset()
-
-    def draw(self, screen):
-        screen.blit(self.rendered, self.pos)
 
 class Scene(object):
     def __init__(self, screen, scene_on=False):
@@ -91,6 +52,23 @@ class Scene(object):
         else:
             self.screen.blit(load_button_inactive, (x, y))
 
+<<<<<<< HEAD
+=======
+###### TEXT GENERATOR ######################
+    def text_generator(self,screen, string, pos):
+            text = ''
+            for i in range(len(string)):
+                text += string[i]
+                font = pygame.font.SysFont("Consolas", 40)
+
+
+                message = font.render(text,True, (255,255,255))
+                self.screen.blit(screen, message, pos)
+                pygame.display.flip()
+                clock.tick(30)
+
+
+>>>>>>> 1c74de8ecb1e0dcb757e69121910054fa43e0b80
 class DrivingScene(Scene):
     def __init__(self, screen, text_box):
         super(DrivingScene, self).__init__(screen)
@@ -104,6 +82,9 @@ class DrivingScene(Scene):
             self.screen.blit(self.text_box, (240, 580))
             self.create_button("instruction", 50, 50, action[2])
             self.create_button("quit", 1000, 40, action[1])
+
+
+
 
 
 class Foyer(Scene):
@@ -175,9 +156,3 @@ class Final(Scene):
     def enter(self):
         self.screen.blit(self.bg, (0, 0))
         self.screen.blit(self.text_box, (340, 100))
-
-
-
-
-
-    # def next_scene(self, screen, input):
