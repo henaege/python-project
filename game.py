@@ -4,6 +4,7 @@ import sys
 from textbox_script import input_questions
 from scene import Scene, DrivingScene, Foyer, Library, Bedroom, Kitchen, Final
 from game_function import input_box, get_user_input, check_user_input
+from scroll_text import ScrollText
 
 # import classes
 def run_game():
@@ -14,33 +15,66 @@ def run_game():
     screen_rect = screen.get_rect()
     pygame.display.set_caption("Mystery House")
     text_box = pygame.image.load('./images/text_box.png')
-    final_text_box = pygame.image.load('./images/final_text_box.png')
+    clock = pygame.time.Clock()
     intro = Scene(screen)
     driving = DrivingScene(screen, text_box)
     foyer = Foyer(screen, text_box)
     library = Library(screen, text_box)
     bedroom = Bedroom(screen, text_box)
     kitchen = Kitchen(screen, text_box)
-    final = Final(screen, final_text_box)
+    final = Final(screen, text_box)
     pygame.mixer.init()
     pygame.mixer.music.load('./music/old city theme.ogg')
     pygame.mixer.music.play(-1)
     entry = TextBox(rect=(680, 700, 200, 30))
+    message = (
+        ScrollText(screen, "You're driving with your best friend, heading home after a day of hiking.", 400, pygame.Color(255,255,0)),
+        )
+    fps = 25
 
     while 1:
-        for event in pygame.event.get():
+        clock.tick(fps)
+        events = pygame.event.get()
+        for event in events:
             if event.type == pygame.QUIT:
                 sys.exit()
             entry.get_event(event)
+
         intro.enter()
         if intro.check_scene():
             driving.enter()
-            input_box(entry, screen)
-            friend_name = get_user_input(entry)
+            for thing in message:
+                thing.update()
+
+            # driving.text_generator("You're driving with your best friend, heading home after a day of hiking.", (100, 300))
+            # driving.text_generator("Rain is beating hard on the roof of your car, the wipers swishing fast.", (100,400))
+            # driving.text_generator("Your GPS takes you to some backroads, empty of light and other cars.", (100,500))
+            # driving.text_generator("Suddenly, you and your friend jolt in your seats! You've hit something!", (100, 600))
+            #     #tells main loop to stop entering drivingtext1
+
+                #call function again to draw over drivingtext1
+
+            # driving.text_generator("What do you do? Enter a number:", (100,460))
+            # driving.text_generator("1. Get out of the car and check it out.", (100,490))
+            # driving.text_generator("2. Stay in the car.", (100,520))
+            # driving.text_generator("3. Quit Game. This is too scary.", (100, 550))
+
+            # pygame.time.wait(2)
         if driving.check_scene():
             foyer.enter()
+            # foyer.text_generator("You enter the house with your friend and ring the bell. No answer.", (100,460))
+            # foyer.text_generator("Your friend shrugs and pushes the door. You both enter and see three", (100,490))
+            # foyer.text_generator("people standing in the foyer: an elderly man, a woman in a red dress and heels,", (100,520))
+            # foyer.text_generator("and a teenage boy in goth makeup.", (100, 550))
+            # foyer.text_generator("What do you do? Enter a number:", (100,460))
+            # foyer.text_generator("1. Talk to the elderly man", (100,490))
+            # foyer.text_generator("2. Talk to the beautiful woman.", (100,520))
+            # foyer.text_generator("3. Talk to the gothic teenager.", (100, 550))
+            input_box(entry)
         if foyer.check_scene():
-            final.enter()
+            library.enter()
+            input_box(entry)
+
 
 
 

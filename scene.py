@@ -1,6 +1,7 @@
 import pygame
 
 
+
 button_list = {'start': ['./images/start_button_hover.png', './images/start_button.png'],
         'quit': ['./images/quit_button_hover.png', './images/quit_button.png'],
         'instruction': ['./images/Instructions_button_hover.png', './images/Instructions_button.png'],
@@ -16,6 +17,46 @@ button_list = {'start': ['./images/start_button_hover.png', './images/start_butt
         }
 action = ['next', 'quit', 'instruction']
 
+
+def text_generator(string):
+    tmp = ''
+    for letter in string:
+        tmp += letter
+        if letter != " ":
+            yield tmp
+        # font = pygame.font.SysFont("Consolas", 40)
+        # text_display = font.render(text,True, (255,255,255))
+        # # pygame.time.Clock.tick(30)
+        # self.screen.blit(text_display, pos)
+        # pygame.time.wait(2)
+
+
+class DynamicText(object):
+    def __init__(self, font, text, pos, autoreset=False):
+        self.done = False
+        self.font = font
+        self.text = text
+        self._gen = text_generator(self.text)
+        self.pos = pos
+        self.autoreset = autoreset
+        self.update()
+
+    def reset(self):
+        self._gen = text_generator(self.text)
+        self.done = False
+        self.update()
+
+    def update(self):
+        if not self.done:
+            try:
+                self.rendered = self.font.render(next(self._gen), True, (0, 128, 0))
+            except StopIteration:
+                self.done = True
+                if self.autoreset:
+                    self.reset()
+
+    def draw(self, screen):
+        screen.blit(self.rendered, self.pos)
 
 class Scene(object):
     def __init__(self, screen, scene_on=False):
@@ -49,7 +90,6 @@ class Scene(object):
                     quit()
         else:
             self.screen.blit(load_button_inactive, (x, y))
-
 
 class DrivingScene(Scene):
     def __init__(self, screen, text_box):
