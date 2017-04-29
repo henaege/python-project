@@ -51,6 +51,19 @@ class Scene(object):
         else:
             self.screen.blit(load_button_inactive, (x, y))
 
+###### TEXT GENERATOR ######################
+    def text_generator(self,screen, string, pos):
+            text = ''
+            for i in range(len(string)):
+                text += string[i]
+                font = pygame.font.SysFont("Consolas", 40)
+
+
+                message = font.render(text,True, (255,255,255))
+                self.screen.blit(screen, message, pos)
+                pygame.display.flip()
+                clock.tick(30)
+
 
 class DrivingScene(Scene):
     def __init__(self, screen, text_box):
@@ -66,18 +79,8 @@ class DrivingScene(Scene):
             self.create_button("instruction", 50, 50, action[2])
             self.create_button("quit", 1000, 40, action[1])
 
-###### TEXT GENERATOR ######################
-    def text_generator(self,string, pos):
-            text = ''
-            for i in range(len(string)):
-                text += string[i]
-                font = pygame.font.SysFont("Consolas", 40)
 
-
-                text_generator = font.render(text,True, (255,255,255))
-                self.screen.blit(text_generator, pos)
-                pygame.display.flip()
-                clock.tick(30)
+    
 
 
 class Foyer(Scene):

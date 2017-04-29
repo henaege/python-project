@@ -53,10 +53,10 @@ def run_game():
 
 
             if drivingtext1:
-                driving_a.text_generator("You're driving with your best friend, heading home after a day of hiking.", (100,460))
-                driving_b.text_generator("Rain is beating hard on the roof of your car, the wipers swishing fast.", (100,490))
-                driving_c.text_generator("Your GPS takes you to some backroads, empty of light and other cars.", (100,520))
-                driving_d.text_generator("Suddenly, you and your friend jolt in your seats! You've hit something!", (100, 550))
+                driving_a.text_generator(screen,"You're driving with your best friend, heading home after a day of hiking.", (100, 460))
+                driving_b.text_generator(screen,"Rain is beating hard on the roof of your car, the wipers swishing fast.", (100, 490))
+                driving_c.text_generator(screen,"Your GPS takes you to some backroads, empty of light and other cars.", (100, 520))
+                driving_d.text_generator(screen,"Suddenly, you and your friend jolt in your seats! You've hit something!", (100, 550))
                 #tells main loop to stop entering drivingtext1
                 drivingtext1 = False
 
