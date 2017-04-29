@@ -2,7 +2,7 @@ import pygame
 from textbox import TextBox
 import sys
 from textbox_script import input_questions
-from scene import Scene, DrivingScene, Foyer, Library
+from scene import Scene, DrivingScene, Foyer, Library, MasterBedroom
 
 # import classes
 def run_game():
@@ -17,6 +17,7 @@ def run_game():
     driving = DrivingScene(screen, text_box)
     foyer = Foyer(screen, text_box)
     library = Library(screen, text_box)
+    bedroom = MasterBedroom(screen, text_box)
     pygame.mixer.init()
     pygame.mixer.music.load('./music/old city theme.ogg')
     pygame.mixer.music.play(-1)

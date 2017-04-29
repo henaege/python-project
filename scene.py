@@ -89,7 +89,16 @@ class Library(Scene):
         # self.create_button()
 
 class MasterBedroom(Scene):
-    pass
+    def __init__(self, screen, text_box):
+        super(MasterBedroom, self).__init__(screen)
+        self.bg = pygame.image.load('./images/bedroom.jpg')
+        self.text_box = text_box
+
+    def enter(self):
+        self.screen.blit(self.bg, (0, 0)
+        self.screen.blit(self.text_box, (240, 580))
+        self.create_button('instruction', 40, 50, action[2])
+        
 
   
     # def next_scene(self, screen, input):
