@@ -6,7 +6,13 @@ button_list = {'start': ['./images/start_button_hover.png', './images/start_butt
         'instruction': ['./images/Instructions_button_hover.png', './images/Instructions_button.png'],
         'woman': ['./images/beautiful_woman_hover.png', './images/beautiful_woman.png'],
         'man': ['./images/elderly_man_hover.png', './images/elderly_man.png'],
-        'teen': ['./images/goth_teen_hover.png', './images/goth_teen.png']
+        'teen': ['./images/goth_teen_hover.png', './images/goth_teen.png'],
+        'note1': ['./images/note1.png', './images/note1.png'],
+        'note2': ['./images/note2.png', './images/note2.png'],
+        'watch': ['./images/watch.png', './images/watch.png'],
+        'skyline': ['./images/skyline1.png', './images/skyline1.png'],
+        'locket': ['./images/locket1.png', './images/locket1.png'],
+        'phone': ['./images/phone1.png', './images/phone1.png']
         }
 action = ['next', 'quit', 'instruction']
 
@@ -86,11 +92,13 @@ class Library(Scene):
         self.create_button('instruction', 40, 50, action[2])
         woman_img = pygame.image.load('./images/beautiful_woman.png')
         self.screen.blit(woman_img, (60, 350))
+        self.create_button('note1', 275, 550, action[1])
+        self.create_button('note2', 695, 500, action[1])
         # self.create_button()
 
-class MasterBedroom(Scene):
+class Bedroom(Scene):
     def __init__(self, screen, text_box):
-        super(MasterBedroom, self).__init__(screen)
+        super(Bedroom, self).__init__(screen)
         self.bg = pygame.image.load('./images/bedroom.jpg')
         self.text_box = text_box
 
@@ -98,6 +106,37 @@ class MasterBedroom(Scene):
         self.screen.blit(self.bg, (0, 0))
         self.screen.blit(self.text_box, (240, 580))
         self.create_button('instruction', 40, 50, action[2])
+        self.create_button('watch', 425, 560, action [1])
+        self.create_button('skyline', 643, 300, action[1])
+        man_img = pygame.image.load('./images/elderly_man.png')
+        self.screen.blit(man_img, (45, 335))
+
+class Kitchen(Scene):
+    def __init__(self, screen, text_box):
+        super(Kitchen, self).__init__(screen)
+        self.bg = pygame.image.load('./images/kitchen.jpg')
+        self.text_box = text_box
+
+    def enter(self):
+        self.screen.blit(self.bg, (0, 0))
+        self.screen.blit(self.text_box, (240, 580))
+        self.create_button('instruction', 40, 50, action[2])
+        self.create_button('phone', 100, 435, action[1])
+        self.create_button('locket', 950, 430, action[1])
+        teen_img = pygame.image.load('./images/goth_teen3.png')
+        self.screen.blit(teen_img, (600, 220))
+
+class Final(Scene):
+    def __init__(self, screen, text_box):
+        super(Final, self).__init__(screen)
+        self.bg = pygame.image.load('./images/final.jpg')
+        self.text_box = text_box
+
+    def enter(self):
+        self.screen.blit(self.bg, (0, 0))
+        self.screen.blit(self.text_box, (340, 100))
+
+
         
 
   
