@@ -1,4 +1,5 @@
 import pygame
+from puzzles import *
 
 
 button_list = {'start': ['./images/start_button_hover.png', './images/start_button.png'],

@@ -3,6 +3,7 @@ from textbox import TextBox
 import sys
 from textbox_script import input_questions
 from scene import Scene, DrivingScene, Foyer, Library, Bedroom, Kitchen, Final
+from puzzles import *
 
 # import classes
 def run_game():
