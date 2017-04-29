@@ -3,6 +3,7 @@ from textbox import TextBox
 import sys
 from textbox_script import input_questions
 from scene import Scene, DrivingScene, Foyer, Library, Bedroom, Kitchen, Final
+from game_function import input_box, get_user_input, check_user_input
 
 # import classes
 def run_game():
@@ -24,31 +25,23 @@ def run_game():
     pygame.mixer.init()
     pygame.mixer.music.load('./music/old city theme.ogg')
     pygame.mixer.music.play(-1)
-
-    # settings = {
-    # "text": input_questions["driving_scece1"],
-    # "inactive_on_enter": False,
-    # }
-    # entry = TextBox(rect=(150, 600, 200, 30), **settings)
+    entry = TextBox(rect=(680, 700, 200, 30))
 
     while 1:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-        #     entry.get_event(event)
-        # entry.update()
-        # screen.blit(background_image, (0, 0))
-        # entry.text_display(screen)
-        # entry.draw(screen)
+            entry.get_event(event)
         intro.enter()
         if intro.check_scene():
             driving.enter()
-            pygame.time.wait(2)
+            input_box(entry, screen)
+            friend_name = get_user_input(entry)
         if driving.check_scene():
             foyer.enter()
         if foyer.check_scene():
             final.enter()
-        
+
 
 
         pygame.display.flip()
