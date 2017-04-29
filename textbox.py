@@ -45,7 +45,6 @@ class TextBox(object):
         '''
         self.rect = pg.Rect(rect)
         self.buffer = []
-        self.text = None
         self.final = None
         self.rendered = None
         self.render_rect = None
@@ -70,7 +69,7 @@ class TextBox(object):
                     "inactive_on_enter" : True,
                     "blink_speed": 500,
                     "delete_speed": 75,
-                    "text": None}
+                    }
         for kwarg in kwargs:
             if kwarg in defaults:
                 defaults[kwarg] = kwargs[kwarg]
@@ -135,11 +134,6 @@ class TextBox(object):
             if keys[pg.K_BACKSPACE]:
                 if self.buffer:
                     self.buffer.pop()
-
-    def text_display(self, surface):
-        text_font = pg.font.Font("freesansbold.ttf", 20)
-        text_dis = text_font.render(self.text, True, self.color)
-        surface.blit(text_dis, [150, 570])
 
     def draw(self,surface):
         '''
