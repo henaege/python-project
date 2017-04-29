@@ -62,7 +62,7 @@ class DrivingScene(Scene):
         # while not self.status:
             self.screen.blit(self.bg, (0, 0))
             self.screen.blit(self.text_box, (240, 580))
-            self.create_button("instruction", 50, 50, action[0])
+            self.create_button("instruction", 50, 50, action[2])
             self.create_button("quit", 1000, 40, action[1])
 
 
@@ -137,8 +137,7 @@ class Final(Scene):
         self.screen.blit(self.text_box, (340, 100))
 
 
-        
 
-  
+
+
     # def next_scene(self, screen, input):
-
