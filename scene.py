@@ -1,5 +1,5 @@
 import pygame
-from puzzles import Bedroom_Puzzle, Library_puzzle
+from puzzles import Bedroom_Puzzle, Library_puzzle, Kitchen_Puzzle
 
 clock = pygame.time.Clock()
 
@@ -17,7 +17,7 @@ button_list = {'start': ['./images/start_button_hover.png', './images/start_butt
         'locket': ['./images/locket1.png', './images/locket1.png'],
         'phone': ['./images/phone1.png', './images/phone1.png']
         }
-action = ['next', 'quit', 'instruction', 'library', 'bedroom', 'kitchen', 'final', 'watch']
+action = ['next', 'quit', 'instruction', 'library', 'bedroom', 'kitchen', 'final', 'watch', 'picture']
 moving_scene = {
     'library': False,
     'bedroom': False,
@@ -69,9 +69,24 @@ class Scene(object):
                     moving_scene['kitchen'] = True
                 elif action == "final":
                     moving_scene['final'] = True
+                elif action == 'note1':
+                    puzzle = Library_puzzle()
+                    puzzle.puzzle1(None)
+                elif action == 'note2':
+                    puzzle = Library_puzzle()
+                    puzzle.puzzle2(None)
                 elif action == 'watch':
                     puzzle = Bedroom_Puzzle()
                     puzzle.puzzle1()
+                elif action == 'picture':
+                    puzzle = Bedroom_Puzzle()
+                    puzzle.puzzle2()
+                elif action == 'phone':
+                    puzzle = Kitchen_Puzzle()
+                    puzzle.puzzle1()
+                elif action == 'locket':
+                    puzzle = Kitchen_Puzzle()
+                    puzzle.puzzle2()
 
         else:
             self.screen.blit(load_button_inactive, (x, y))
@@ -170,14 +185,14 @@ class Bedroom(Scene):
     def first_puzzle(self):
         user_input = raw_input("> ")
         current_puzzle = Bedroom_Puzzle()
-        puzzle_solved = current_puzzle.puzzle1(user_input)
+        puzzle_solved = current_puzzle.puzzle1()
         if puzzle_solved:
             player_list.append(master_list[2])
 
     def second_puzzle(self):
         user_input = raw_input("> ")
         current_puzzle = Bedroom_Puzzle()
-        puzzle_solved = current_puzzle.puzzle2(user_input)
+        puzzle_solved = current_puzzle.puzzle2()
         if puzzle_solved:
             player_list.append(master_list[3])
 
@@ -196,6 +211,20 @@ class Kitchen(Scene):
         self.create_button('locket', 950, 430, action[1])
         teen_img = pygame.image.load('./images/goth_teen3.png')
         self.screen.blit(teen_img, (600, 220))
+
+    def first_puzzle(self):
+        user_input = raw_input("> ")
+        current_puzzle = Bedroom_Puzzle()
+        puzzle_solved = current_puzzle.puzzle1()
+        if puzzle_solved:
+            player_list.append(master_list[4])
+
+    def second_puzzle(self):
+        user_input = raw_input("> ")
+        current_puzzle = Bedroom_Puzzle()
+        puzzle_solved = current_puzzle.puzzle2()
+        if puzzle_solved:
+            player_list.append(master_list[5])
 
 class Final(Scene):
     def __init__(self, screen, text_box):

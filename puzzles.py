@@ -23,7 +23,7 @@ class Bedroom_Puzzle(Puzzle):
         user_input = raw_input("What is the solution? ")
 
         correct_answer = "6210001000"
-        if self.user_input == correct_answer:
+        if user_input == correct_answer:
             return True
         
 
@@ -35,10 +35,10 @@ class Bedroom_Puzzle(Puzzle):
         and the next. I had my first child (your Uncle Peter) when I was 19.
         Now the youngest one (Your Auntie Jane) is 19 herself. That's all I'm telling you!"\n'''
 
-        # print "How old is Tom's Granny?
-        self.update_user_input(new_input)
+        user_input = raw_input("How old is Tom's Granny?" )
+        # self.update_user_input(new_input)
         correct_answer = "58"
-        if self.user_input == correct_answer:
+        if user_input == correct_answer:
             return True
 
 
@@ -55,7 +55,7 @@ class Library_puzzle(Puzzle):
         answer_list = ["What goes back and forth constantly, but never in a straight line?",
                         "What loses its head in the morning and gets it back at night?"]
         try:
-            user_input1 = int(user_input1)
+            user_input1 = int(user_input)
         except ValueError:
             #display text next to the input box to tell the user to enter a valid input
             pass
@@ -65,4 +65,14 @@ class Library_puzzle(Puzzle):
                 pass
 
     def puzzle2(self, user_input):
+        pass
+
+class Kitchen_Puzzle(Puzzle):
+    def __init__(self):
+        super(Kitchen_Puzzle, self).__init__()
+
+    def puzzle1(self):
+        pass
+
+    def puzzle2(self):
         pass
