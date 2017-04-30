@@ -1,4 +1,4 @@
-from math import random
+# from math import random
 
 class Puzzle(object):
     def __init__(self, user_input=None):
@@ -8,24 +8,24 @@ class Puzzle(object):
         self.user_input = new_input
         return self.user_input
 
-class Bedroom_Puzzles(Puzzle):
+class Bedroom_Puzzle(Puzzle):
     def __init__(self):
-        super(Bedroom_Puzzles, self).__init()
+        super(Bedroom_Puzzle, self).__init__()
 
 
-    def puzzle1(self, new_input):
+    def puzzle1(self):
         correct = False
         print """Find a 10-digit number where the first digit is how many
         zeros there are in the number, the second digit is how
         many 1s there are in the number etc. until the tenth
         digit which is how many 9s there are in the number.\n """
 
-        # print "What is the solution? "
+        user_input = raw_input("What is the solution? ")
 
         correct_answer = "6210001000"
         if self.user_input == correct_answer:
-            correct = True
-        return correct
+            return True
+        
 
     def puzzle2(self):
         correct = False
@@ -39,8 +39,7 @@ class Bedroom_Puzzles(Puzzle):
         self.update_user_input(new_input)
         correct_answer = "58"
         if self.user_input == correct_answer:
-            correct = True
-        return correct
+            return True
 
 
 class Library_puzzle(Puzzle):
@@ -48,7 +47,7 @@ class Library_puzzle(Puzzle):
     def __init__(self):
         super(Library_puzzle, self).__init__()
 
-    def puzzel1(self, user_input):
+    def puzzle1(self, user_input):
 
         key = 3
         Note_list = ["Zkdw jrhv edfn dqg iruwk frqvwdqwob, exw qhyhu lq d vwudljkw olqh?",
