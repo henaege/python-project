@@ -1,3 +1,5 @@
+from math import random
+
 class Puzzle(object):
     def __init__(self):
         pass
@@ -34,3 +36,17 @@ class Bedroom_Puzzles(Puzzle):
         if user_input == correct_answer:
             correct = True
         return correct
+
+class Library_puzzle(user_input1, user_input2, scene_number):
+    key = 3
+    Note_list = ["Zkdw jrhv edfn dqg iruwk frqvwdqwob, exw qhyhu lq d vwudljkw olqh?",
+                "Zkdw orvhv lwv khdg lq wkh pruqlqj dqg jhwv lw edfn dw qljkw?"]
+    answer_list = ["What goes back and forth constantly, but never in a straight line?",
+                    "What loses its head in the morning and gets it back at night?"]
+    try:
+        user_input1 = int(user_input1)
+    except ValueError:
+        #display text next to the input box to tell the user to enter a valid input
+    else:
+        if user_input == key:
+            # display answer

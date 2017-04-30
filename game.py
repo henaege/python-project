@@ -1,10 +1,22 @@
 import pygame
 from textbox import TextBox
 import sys
-from textbox_script import input_questions
-from scene import Scene, DrivingScene, Foyer, Library, Bedroom, Kitchen, Final
-from game_function import input_box, get_user_input, check_user_input
+from scene import Scene, DrivingScene, Foyer, Library, Bedroom, Kitchen, Final, moving_scene
+from game_function import input_box
 from scroll_text import ScrollText
+from textbox_script import driving_scene
+
+
+def text_generator(screen, clock, string, pos):
+        text = ''
+        for i in range(len(string)):
+            print 2
+            text += string[i]
+            font = pygame.font.SysFont("Consolas", 40)
+            message_display_text = font.render(text, True, (255, 255, 255))
+            screen.blit(message_display_text, pos)
+        # pygame.display.update(pygame.Rect(100, 460, 10, 10))
+        # clock.tick(30)
 
 # import classes
 def run_game():
@@ -27,14 +39,14 @@ def run_game():
     pygame.mixer.music.load('./music/old city theme.ogg')
     pygame.mixer.music.play(-1)
     entry = TextBox(rect=(680, 700, 200, 30))
-    message = (
-        ScrollText(screen, "You're driving with your best friend, heading home after a day of hiking.", 400, pygame.Color(255,255,0)),
-        )
-    fps = 25
     foyer = Foyer(screen, text_box)
 
+    drivingtext1 = True
+    drivingtext2 = False
+    foyertext2 = False
+    foyertext1 = True
+
     while 1:
-        clock.tick(fps)
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
@@ -43,36 +55,37 @@ def run_game():
 
         intro.enter()
         if intro.check_scene():
+            print "pass intro"
             driving.enter()
-            for thing in message:
-                thing.update()
-
-            # driving.text_generator("You're driving with your best friend, heading home after a day of hiking.", (100, 300))
-            # driving.text_generator("Rain is beating hard on the roof of your car, the wipers swishing fast.", (100,400))
-            # driving.text_generator("Your GPS takes you to some backroads, empty of light and other cars.", (100,500))
-            # driving.text_generator("Suddenly, you and your friend jolt in your seats! You've hit something!", (100, 600))
-            #     #tells main loop to stop entering drivingtext1
-
-                #call function again to draw over drivingtext1
-
-            # driving.text_generator("What do you do? Enter a number:", (100,460))
-            # driving.text_generator("1. Get out of the car and check it out.", (100,490))
-            # driving.text_generator("2. Stay in the car.", (100,520))
-            # driving.text_generator("3. Quit Game. This is too scary.", (100, 550))
-
-            # pygame.time.wait(2)
+            if drivingtext1:
+                print 1
+                text_generator(screen, clock, "You're driving with your best friend, heading home after a day of hiking.", (100,460))
+                text_generator(screen, clock, "Rain is beating hard on the roof of your car, the wipers swishing fast.", (100,490))
+                text_generator(screen, clock, "Your GPS takes you to some backroads, empty of light and other cars.", (100,520))
+                text_generator(screen, clock, "Suddenly, you and your friend jolt in your seats! You've hit something!", (100, 550))
+                drivingtext1 = False
+                pygame.time.delay(1000)
+                # drivingtext2 = True
+            # if drivingtext2:
+            #     driving.enter()
+            #     text_generator(screen, clock, "What do you do? Enter a number:", (100,460))
+            #     text_generator(screen, clock, "1. Get out of the car and check it out.", (100,490))
+            #     text_generator(screen, clock, "2. Stay in the car.", (100,520))
+            #     text_generator(screen, clock, "3. Quit Game. This is too scary.", (100, 550))
+            #     pygame.time.delay(2000)
+            #     pygame.time.wait(2)
+            input_box(entry, screen)
+            driving.next_scene(entry.check_user_input("1"))
         if driving.check_scene():
             foyer.enter()
-
-        if driving.check_scene():
-            foyer.enter()
-
-        if foyer.check_scene():
-            library.enter()
-            input_box(entry)
-
-
-
+            if moving_scene['library']:
+                library.enter()
+            elif moving_scene['bedroom']:
+                print 2
+                bedroom.enter
+            elif moving_scene['kitchen']:
+                print 3
+                kitchen.enter()
 
         pygame.display.flip()
 

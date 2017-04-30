@@ -16,7 +16,13 @@ button_list = {'start': ['./images/start_button_hover.png', './images/start_butt
         'locket': ['./images/locket1.png', './images/locket1.png'],
         'phone': ['./images/phone1.png', './images/phone1.png']
         }
-action = ['next', 'quit', 'instruction']
+action = ['next', 'quit', 'instruction', 'library', 'bedroom', 'kitchen', 'final']
+moving_scene = {
+    'library': False,
+    'bedroom': False,
+    'kitchen': False,
+    'final': False,
+}
 
 
 class Scene(object):
@@ -46,9 +52,19 @@ class Scene(object):
             if click[0] == 1 and action != None:
                 if action == "next":
                     self.scene_on = True
-                if action == "quit":
+                elif action == "quit":
                     pygame.quit()
                     quit()
+                if action == "library":
+                    print 1
+                    moving_scene['library'] = True
+                if action == "bedroom":
+                    moving_scene['bedroom'] = True
+                if action == "kitchen":
+                    moving_scene['kitchen'] = True
+                if action == "final":
+                    moving_scene['final'] = True
+
         else:
             self.screen.blit(load_button_inactive, (x, y))
 
@@ -67,6 +83,12 @@ class DrivingScene(Scene):
             self.create_button("instruction", 50, 50, action[2])
             self.create_button("quit", 1000, 40, action[1])
 
+    def next_scene(self, check_user_input):
+        if check_user_input:
+            self.scene_on = True
+        else:
+            print("Wrong!")
+
 
 
 
@@ -81,9 +103,9 @@ class Foyer(Scene):
         self.screen.blit(self.bg, (0, 0))
         self.screen.blit(self.text_box, (240, 580))
         self.create_button('instruction', 40, 50, action[2])
-        self.create_button('woman', 300, 390, action[0])
-        self.create_button('man', 150, 425, action[0])
-        self.create_button('teen', 700, 385, action[0])
+        self.create_button('woman', 300, 390, action[3])
+        self.create_button('man', 150, 425, action[4])
+        self.create_button('teen', 700, 385, action[5])
 
 class Library(Scene):
     def __init__(self, screen, text_box):

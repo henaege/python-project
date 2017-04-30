@@ -1,6 +1,6 @@
 import pygame as pg
 import string
-import textbox_script
+
 
 class TextBox(object):
     '''
@@ -140,6 +140,21 @@ class TextBox(object):
         text_font = pg.font.Font("freesansbold.ttf", 20)
         text_dis = text_font.render(self.text, True, self.color)
         surface.blit(text_dis, [150, 570])
+
+    def get_user_input(self):
+        return self.final
+
+        # need add text display to tell user their invalid input
+    def check_user_input(self, answer):
+            # use for loop and if statement to decide if user has enter the right input
+            user_input = self.get_user_input()
+            # for option in option_list:
+            if user_input == answer:
+                return True
+            else:
+
+                print("Wrong")
+
 
     def draw(self,surface):
         '''

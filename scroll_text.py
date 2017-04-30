@@ -3,6 +3,8 @@
 
 import pygame
 import sys
+driving_scene = ["Suddenly, you and your friend jolt in your seats! You've hit something!",
+                "You're driving with your best friend, heading home after a day of hiking."]
 
 class ScrollText(object):
     """Simple 2d Scrolling Text"""
@@ -47,7 +49,7 @@ def test():
         surface = pygame.display.set_mode((600, 600))
         pygame.init()
         spheres = (
-            ScrollText(surface, "Dolor Ipsum Dolor uswef", 400, pygame.Color(255,255,0)),
+            ScrollText(surface, driving_scene, 400, pygame.Color(255,255,0)),
             )
         clock = pygame.time.Clock()
         pause = False
