@@ -58,11 +58,11 @@ class Scene(object):
                 if action == "library":
                     print 1
                     moving_scene['library'] = True
-                if action == "bedroom":
+                elif action == "bedroom":
                     moving_scene['bedroom'] = True
-                if action == "kitchen":
+                elif action == "kitchen":
                     moving_scene['kitchen'] = True
-                if action == "final":
+                elif action == "final":
                     moving_scene['final'] = True
 
         else:
@@ -102,7 +102,7 @@ class Foyer(Scene):
     def enter(self):
         self.screen.blit(self.bg, (0, 0))
         self.screen.blit(self.text_box, (240, 580))
-        self.create_button('instruction', 40, 50, action[2])
+        # self.create_button('instruction', 40, 50, action[2])
         self.create_button('woman', 300, 390, action[3])
         self.create_button('man', 150, 425, action[4])
         self.create_button('teen', 700, 385, action[5])
@@ -116,7 +116,7 @@ class Library(Scene):
     def enter(self):
         self.screen.blit(self.bg, (0, 0))
         self.screen.blit(self.text_box, (240, 580))
-        self.create_button('instruction', 40, 50, action[2])
+        # self.create_button('instruction', 40, 50, action[2])
         woman_img = pygame.image.load('./images/beautiful_woman.png')
         self.screen.blit(woman_img, (60, 350))
         self.create_button('note1', 275, 550, action[1])
@@ -132,7 +132,7 @@ class Bedroom(Scene):
     def enter(self):
         self.screen.blit(self.bg, (0, 0))
         self.screen.blit(self.text_box, (240, 580))
-        self.create_button('instruction', 40, 50, action[2])
+        # self.create_button('instruction', 40, 50, action[2])
         self.create_button('watch', 425, 560, action [1])
         self.create_button('skyline', 643, 300, action[1])
         man_img = pygame.image.load('./images/elderly_man.png')
@@ -147,7 +147,7 @@ class Kitchen(Scene):
     def enter(self):
         self.screen.blit(self.bg, (0, 0))
         self.screen.blit(self.text_box, (240, 580))
-        self.create_button('instruction', 40, 50, action[2])
+        # self.create_button('instruction', 40, 50, action[2])
         self.create_button('phone', 100, 435, action[1])
         self.create_button('locket', 950, 430, action[1])
         teen_img = pygame.image.load('./images/goth_teen3.png')

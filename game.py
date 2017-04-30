@@ -15,7 +15,7 @@ def text_generator(screen, clock, string, pos):
             font = pygame.font.SysFont("Consolas", 40)
             message_display_text = font.render(text, True, (255, 255, 255))
             screen.blit(message_display_text, pos)
-        # pygame.display.update(pygame.Rect(100, 460, 10, 10))
+        pygame.display.update(pygame.Rect(100, 460, 10, 10))
         # clock.tick(30)
 
 # import classes
@@ -52,6 +52,7 @@ def run_game():
             if event.type == pygame.QUIT:
                 sys.exit()
             entry.get_event(event)
+            
 
         intro.enter()
         if intro.check_scene():
@@ -88,6 +89,7 @@ def run_game():
                 kitchen.enter()
 
         pygame.display.flip()
+        clock.tick(30)
 
 # Final is the user input from the textbox
 # def print_on_enter(id, final):
