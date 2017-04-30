@@ -9,15 +9,15 @@ from textbox_script import driving_scene
 
 clock = pygame.time.Clock()
 def text_generator(screen, clock, string, pos):
-        # text = ''
-        # for i in range(len(string)):
-        #     print 2
-        #     text += string[i]
-    font = pygame.font.SysFont("Consolas", 40)
-    message_display_text = font.render(string, True, (255, 255, 255))
-    screen.blit(message_display_text, pos)
-        # pygame.display.update(pygame.Rect(100, 460, 10, 10))
-        # clock.tick(30)
+        text = ''
+        for i in range(len(string)):
+            print 2
+            text += string[i]
+            font = pygame.font.SysFont("Consolas", 40)
+            message_display_text = font.render(text, True, (255, 255, 255))
+            screen.blit(message_display_text, pos)
+        pygame.display.update(pygame.Rect(100, 460, 10, 10))
+        clock.tick(30)
 
 # import classes
 def run_game():
