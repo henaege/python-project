@@ -16,7 +16,7 @@ button_list = {'start': ['./images/start_button_hover.png', './images/start_butt
         'locket': ['./images/locket1.png', './images/locket1.png'],
         'phone': ['./images/phone1.png', './images/phone1.png']
         }
-action = ['next', 'quit', 'instruction', 'library', 'bedroom', 'kitchen', 'final']
+action = ['next', 'quit', 'instruction', 'library', 'bedroom', 'kitchen', 'final', 'puzzle']
 moving_scene = {
     'library': False,
     'bedroom': False,
@@ -27,10 +27,11 @@ moving_scene = {
 
 
 class Scene(object):
-    def __init__(self, screen, scene_on=False):
+    def __init__(self, screen, scene_on=False, puzzle_active=False):
         self.screen = screen
         self.bg = pygame.image.load("images/house.jpg")
         self.scene_on = scene_on
+        self.puzzle_active = puzzle_active
 
     def enter(self):
         # while not self.status:
@@ -67,6 +68,8 @@ class Scene(object):
                     moving_scene['kitchen'] = True
                 elif action == "final":
                     moving_scene['final'] = True
+                elif action == "puzzle":
+                    self.puzzle_active = True
 
         else:
             self.screen.blit(load_button_inactive, (x, y))
@@ -127,8 +130,8 @@ class Library(Scene):
         # self.create_button('instruction', 40, 50, action[2])
         woman_img = pygame.image.load('./images/beautiful_woman.png')
         self.screen.blit(woman_img, (60, 350))
-        self.create_button('note1', 275, 550, action[1])
-        self.create_button('note2', 695, 500, action[1])
+        self.create_button('note1', 275, 550, action[7])
+        self.create_button('note2', 695, 500, action[7])
         # self.create_button()
 
 class Bedroom(Scene):
