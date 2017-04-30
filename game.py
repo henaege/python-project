@@ -42,8 +42,9 @@ def run_game():
     entry = TextBox(rect=(680, 700, 200, 30))
     foyer = Foyer(screen, text_box)
 
+    pass_intro = True
     drivingtext1 = True
-    # drivingtext2 = False
+    drivingtext2 = False
     # foyertext2 = False
     # foyertext1 = True
 
@@ -53,31 +54,33 @@ def run_game():
             if event.type == pygame.QUIT:
                 sys.exit()
             entry.get_event(event)
-            
 
-        intro.enter()
+        if pass_intro:
+            intro.enter()
         if intro.check_scene():
             print "pass intro"
             driving.enter()
             if drivingtext1:
                 print 1
-                # text_generator(screen, clock, "You're driving with your best friend, heading home after a day of hiking.", (100,460))
+                text_generator(screen, clock, "You're driving with your best friend, heading home after a day of hiking.", (100,460))
                 # text_generator(screen, clock, "Rain is beating hard on the roof of your car, the wipers swishing fast.", (100,490))
                 # text_generator(screen, clock, "Your GPS takes you to some backroads, empty of light and other cars.", (100,520))
                 # text_generator(screen, clock, "Suddenly, you and your friend jolt in your seats! You've hit something!", (100, 550))
-                # drivingtext1 = False
-                # pygame.time.delay(1000)
-                # drivingtext2 = True
-            # if drivingtext2:
-            #     driving.enter()
-            #     text_generator(screen, clock, "What do you do? Enter a number:", (100,460))
-            #     text_generator(screen, clock, "1. Get out of the car and check it out.", (100,490))
-            #     text_generator(screen, clock, "2. Stay in the car.", (100,520))
-            #     text_generator(screen, clock, "3. Quit Game. This is too scary.", (100, 550))
-            #     pygame.time.delay(2000)
-            #     pygame.time.wait(2)
+                drivingtext1 = False
+                pygame.time.delay(1000)
+                pygame.display.update()
+            elif drivingtext2:
+                driving.enter()
+                text_generator(screen, clock, "What do you do? Enter a number:", (100,460))
+                text_generator(screen, clock, "1. Get out of the car and check it out.", (100,490))
+                text_generator(screen, clock, "2. Stay in the car.", (100,520))
+                text_generator(screen, clock, "3. Quit Game. This is too scary.", (100, 550))
+                pygame.time.delay(2000)
+                pygame.time.wait(2)
             input_box(entry, screen)
             driving.next_scene(entry.check_user_input("1"))
+            drivingtext2 = True
+            clock.tick(30)
         if driving.check_scene():
             foyer.enter()
             if moving_scene['library']:
@@ -88,7 +91,6 @@ def run_game():
             if moving_scene['kitchen']:
                 print 3
                 kitchen.enter()
-
         pygame.display.flip()
         clock.tick(30)
 

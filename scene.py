@@ -41,6 +41,9 @@ class Scene(object):
         self.create_button("quit", 528, 600, action[1])
             # self.screen.blit(text_box, (240, 600))
 
+    def change_scene_finished(self):
+        self.scene_on = False
+
     def check_scene(self):
         return self.scene_on
 
@@ -59,7 +62,6 @@ class Scene(object):
                     pygame.quit()
                     quit()
                 if action == "library":
-                    print 1
                     moving_scene['library'] = True
                 elif action == "bedroom":
                     moving_scene['bedroom'] = True
