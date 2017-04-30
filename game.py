@@ -16,7 +16,7 @@ def text_generator(screen, clock, string, pos):
             message_display_text = font.render(text, True, (255, 255, 255))
             screen.blit(message_display_text, pos)
         pygame.display.update(pygame.Rect(100, 460, 10, 10))
-        # clock.tick(30)
+        clock.tick(30)
 
 # import classes
 def run_game():
@@ -81,10 +81,10 @@ def run_game():
             foyer.enter()
             if moving_scene['library']:
                 library.enter()
-            elif moving_scene['bedroom']:
+            if moving_scene['bedroom']:
                 print 2
-                bedroom.enter
-            elif moving_scene['kitchen']:
+                bedroom.enter()
+            if moving_scene['kitchen']:
                 print 3
                 kitchen.enter()
 

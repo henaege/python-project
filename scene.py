@@ -25,6 +25,7 @@ moving_scene = {
 }
 
 
+
 class Scene(object):
     def __init__(self, screen, scene_on=False):
         self.screen = screen
@@ -68,6 +69,11 @@ class Scene(object):
         else:
             self.screen.blit(load_button_inactive, (x, y))
 
+    def compare_list(player_list, master_list):
+        if player_list == master_list:
+            return True
+        else:
+            return False
 
 class DrivingScene(Scene):
     def __init__(self, screen, text_box):
