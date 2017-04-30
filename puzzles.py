@@ -1,7 +1,6 @@
 import math
 
 
-
 class Puzzle(object):
     def __init__(self, user_input=None, puzzle_solved=False):
         self.user_input = user_input
@@ -9,10 +8,9 @@ class Puzzle(object):
 
 
 
-class Bedroom_Puzzles(Puzzle):
+class Bedroom_Puzzle(Puzzle):
     def __init__(self):
-        super(Bedroom_Puzzles, self).__init()
-
+        super(Bedroom_Puzzle, self).__init__()
 
     def puzzle1(self, user_input):
         correct = False
@@ -20,13 +18,10 @@ class Bedroom_Puzzles(Puzzle):
         zeros there are in the number, the second digit is how
         many 1s there are in the number etc. until the tenth
         digit which is how many 9s there are in the number.\n """
-
-        # print "What is the solution? "
-
         correct_answer = "6210001000"
-        if self.user_input == correct_answer:
-            correct = True
-        return correct
+        if user_input == correct_answer:
+            return True
+
 
     def puzzle2(self, user_input):
         correct = False
@@ -36,12 +31,9 @@ class Bedroom_Puzzles(Puzzle):
         and the next. I had my first child (your Uncle Peter) when I was 19.
         Now the youngest one (Your Auntie Jane) is 19 herself. That's all I'm telling you!"\n'''
 
-        # print "How old is Tom's Granny?
-        self.update_user_input(user_input)
         correct_answer = "58"
-        if self.user_input == correct_answer:
-            correct = True
-        return correct
+        if user_input == correct_answer:
+            return True
 
 
 class Library_puzzle(Puzzle):
@@ -49,14 +41,41 @@ class Library_puzzle(Puzzle):
     def __init__(self):
         super(Library_puzzle, self).__init__()
 
+    def puzzle1(self, user_input):
+        # print questions
+        if self.check_answer(user_input, '3'):
+            # print answer
+            # print question
+            if self.check_answer(user_input, 'pendulum'):
+                return True
+            else:
+                # print you need to think harder?
+
+    def puzzle2(self, user_input):
+        # print questions I don't know what the answer is? But you pass in into the check_answer method
+        if self.check_answer(user_input, ''):
+            # print answer
+            # print question
+            if self.check_answer(user_input, 'pendulum'):
+                return True
+            else:
+                # print you need to think harder?
+
     def check_answer(self, user_input, answer):
         if user_input is not None:
             if user_input == answer:
-                # display answer
                 self.puzzle_solved = True
+                return True
             else:
                 print ("We need your answer.")
 
-    def puzzle1(self, string_list):
-        text_generator(screen, "Zkdw jrhv edfn dqg iruwk frqvwdqwob, exw qhyhu lq d vwudljkw olqh?", (200, 300))
-        library_puzzle.check_answer(entry.get_user_input(), "3")
+
+class Kitchen_Puzzle(Puzzle):
+    def __init__(self):
+        super(Kitchen_Puzzle, self).__init__()
+
+    def puzzle1(self):
+        pass
+
+    def puzzle2(self):
+        pass

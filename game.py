@@ -20,6 +20,13 @@ def text_generator(screen, string, pos):
         # pygame.display.update(pygame.Rect(100, 460, 10, 10))
         # clock.tick(30)
 
+
+def compare_list(player_list, master_list):
+    if player_list == master_list:
+        return True
+    else:
+        return False
+
 # import classes
 def run_game():
     pygame.init()
@@ -42,7 +49,6 @@ def run_game():
     pygame.mixer.music.play(-1)
     entry = TextBox(rect=(680, 700, 200, 30))
     foyer = Foyer(screen, text_box)
-    library_puzzle = Library_puzzle()
 
     # pass_intro = True
     # drivingtext1 = True
@@ -85,20 +91,15 @@ def run_game():
             foyer.enter()
             if moving_scene['library']:
                 library.enter()
-                if library.puzzle_active:
-                    text_generator(screen, "Zkdw jrhv edfn dqg iruwk frqvwdqwob, exw qhyhu lq d vwudljkw olqh?", (200, 300))
-                    library_puzzle.check_answer(entry.get_user_input(), "3")
-                    if library_puzzle.puzzle_solved:
-                        text_generator(screen, "What goes back and forth constantly, but never in a straight line?", (200, 400))
-                        library_puzzle.check_answer(entry.get_user_input(), "pendulum")
-                        # text_generator(screen, )
-                    input_box(entry, screen)
+                input_box(entry, screen)
             if moving_scene['bedroom']:
-                print 2
                 bedroom.enter()
+                input_box(entry, screen)
             if moving_scene['kitchen']:
-                print 3
                 kitchen.enter()
+                input_box(entry, screen)
+        if compare_list(player_list, master_list):
+            final.enter()
         pygame.display.flip()
         clock.tick(30)
 
