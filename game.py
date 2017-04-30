@@ -1,12 +1,13 @@
 import pygame
 from textbox import TextBox
 import sys
+import time
 from scene import Scene, DrivingScene, Foyer, Library, Bedroom, Kitchen, Final, moving_scene
 from game_function import input_box
 from scroll_text import ScrollText
 from textbox_script import driving_scene
 
-
+clock = pygame.time.Clock()
 def text_generator(screen, clock, string, pos):
         text = ''
         for i in range(len(string)):
@@ -42,9 +43,9 @@ def run_game():
     foyer = Foyer(screen, text_box)
 
     drivingtext1 = True
-    drivingtext2 = False
-    foyertext2 = False
-    foyertext1 = True
+    # drivingtext2 = False
+    # foyertext2 = False
+    # foyertext1 = True
 
     while 1:
         events = pygame.event.get()
@@ -60,12 +61,12 @@ def run_game():
             driving.enter()
             if drivingtext1:
                 print 1
-                text_generator(screen, clock, "You're driving with your best friend, heading home after a day of hiking.", (100,460))
-                text_generator(screen, clock, "Rain is beating hard on the roof of your car, the wipers swishing fast.", (100,490))
-                text_generator(screen, clock, "Your GPS takes you to some backroads, empty of light and other cars.", (100,520))
-                text_generator(screen, clock, "Suddenly, you and your friend jolt in your seats! You've hit something!", (100, 550))
-                drivingtext1 = False
-                pygame.time.delay(1000)
+                # text_generator(screen, clock, "You're driving with your best friend, heading home after a day of hiking.", (100,460))
+                # text_generator(screen, clock, "Rain is beating hard on the roof of your car, the wipers swishing fast.", (100,490))
+                # text_generator(screen, clock, "Your GPS takes you to some backroads, empty of light and other cars.", (100,520))
+                # text_generator(screen, clock, "Suddenly, you and your friend jolt in your seats! You've hit something!", (100, 550))
+                # drivingtext1 = False
+                # pygame.time.delay(1000)
                 # drivingtext2 = True
             # if drivingtext2:
             #     driving.enter()
